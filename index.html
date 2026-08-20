@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kraljevstvo mašte — vrtić za sve vitezove i princeze</title>
+<meta name="description" content="Privatni vrtić Kraljevstvo mašte na dve lokacije u Beogradu (Novi Beograd i Zemun). Sigurno, toplo i podsticajno okruženje gde deca rastu uz igru, druženje i ljubav. Upis je u toku." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --kremzuta:#FFF6DE;
+    --kremzuta-2:#FFFCF2;
+    --kruna:#FFC02E;
+    --koral:#F26246;
+    --koral-tamni:#E24B30;
+    --malina:#E8478E;
+    --nebo:#35B6E6;
+    --livada:#6FB63C;
+    --ljubicasta:#8E5BD6;
+    --tekst:#4A3423;
+    --tekst-meki:#836A54;
+    --bela:#ffffff;
+    --senka:0 18px 40px -18px rgba(74,52,35,.30);
+    --senka-meka:0 10px 26px -14px rgba(74,52,35,.26);
+    --r-l:28px;
+    --r-m:20px;
+    --r-s:14px;
+    --omot:1160px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Nunito",system-ui,sans-serif;
+    color:var(--tekst);
+    background:var(--kremzuta);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:"Fredoka",system-ui,sans-serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.2px;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  p{margin:0 0 1em;}
+
+  .omot{width:100%;max-width:var(--omot);margin:0 auto;padding:0 22px;}
+
+  /* ---------- NAV ---------- */
+  .traka{
+    position:sticky;top:0;z-index:60;
+    background:rgba(255,246,222,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid rgba(255,192,46,.35);
+  }
+  .traka-omot{display:flex;align-items:center;gap:18px;height:70px;}
+  .brend{display:flex;align-items:center;gap:11px;font-family:"Fredoka";font-weight:600;font-size:1.12rem;color:var(--tekst);white-space:nowrap;}
+  .brend img{width:42px;height:42px;border-radius:50%;box-shadow:var(--senka-meka);background:var(--bela);}
+  .traka nav{margin-left:auto;display:flex;align-items:center;gap:4px;}
+  .traka nav a{
+    font-family:"Fredoka";font-weight:500;font-size:.98rem;
+    padding:9px 14px;border-radius:999px;color:var(--tekst);
+    transition:background .18s,color .18s;
+  }
+  .traka nav a:hover{background:#fff;color:var(--koral-tamni);}
+  .dugme-roditelji{
+    background:var(--malina)!important;color:#fff!important;
+    box-shadow:0 8px 18px -8px rgba(232,71,142,.75);
+  }
+  .dugme-roditelji:hover{background:#d63a7d!important;color:#fff!important;}
+  .dugme-pozovi{
+    background:var(--koral)!important;color:#fff!important;
+    display:inline-flex;align-items:center;gap:7px;
+    box-shadow:0 8px 18px -8px rgba(242,98,70,.8);
+  }
+  .dugme-pozovi:hover{background:var(--koral-tamni)!important;color:#fff!important;}
+  .hamburger{
+    margin-left:auto;display:none;border:none;background:#fff;
+    width:46px;height:46px;border-radius:14px;box-shadow:var(--senka-meka);
+    cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  }
+  .hamburger span{display:block;width:22px;height:2.6px;border-radius:3px;background:var(--tekst);transition:.25s;}
+  .hamburger.otvoren span:nth-child(1){transform:translateY(7.6px) rotate(45deg);}
+  .hamburger.otvoren span:nth-child(2){opacity:0;}
+  .hamburger.otvoren span:nth-child(3){transform:translateY(-7.6px) rotate(-45deg);}
+
+  /* ---------- DUGMICI ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-family:"Fredoka";font-weight:600;font-size:1.04rem;
+    padding:14px 26px;border-radius:999px;cursor:pointer;border:none;
+    transition:transform .16s,box-shadow .16s,background .18s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-koral{background:var(--koral);color:#fff;box-shadow:0 14px 26px -12px rgba(242,98,70,.85);}
+  .btn-koral:hover{background:var(--koral-tamni);}
+  .btn-nebo{background:#fff;color:var(--tekst);box-shadow:var(--senka-meka);border:2px solid rgba(53,182,230,.45);}
+  .btn-nebo:hover{border-color:var(--nebo);color:var(--nebo);}
+  .btn-malina{background:var(--malina);color:#fff;box-shadow:0 14px 26px -12px rgba(232,71,142,.8);}
+  .btn-malina:hover{background:#d63a7d;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:56px 0 30px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+  .znacka-upis{
+    display:inline-flex;align-items:center;gap:9px;
+    background:#fff;color:var(--koral-tamni);font-family:"Fredoka";font-weight:600;
+    padding:8px 18px;border-radius:999px;box-shadow:var(--senka-meka);font-size:.95rem;
+    border:2px solid rgba(242,98,70,.28);margin-bottom:22px;
+  }
+  .tacka-živa{width:11px;height:11px;border-radius:50%;background:var(--koral);position:relative;}
+  .tacka-živa::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--koral);animation:puls 1.8s ease-out infinite;}
+  @keyframes puls{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+
+  /* upis uz subvencije + dokumentacija */
+  .upis-red{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+  .badge-dugme,.badge-doks{
+    display:inline-flex;align-items:center;gap:9px;font-family:"Fredoka";font-weight:600;font-size:.95rem;
+    padding:9px 18px;border-radius:999px;cursor:pointer;border:1.6px solid transparent;
+    transition:transform .18s,box-shadow .18s,background .2s,color .2s;
+  }
+  .badge-dugme{background:#fff;color:var(--koral-tamni);border-color:rgba(242,98,70,.3);box-shadow:var(--senka-meka);}
+  .badge-doks{background:#fff;color:var(--nebo);border-color:rgba(53,182,230,.42);box-shadow:var(--senka-meka);}
+  .badge-dugme:hover,.badge-doks:hover{transform:translateY(-2px);}
+  .badge-dugme[aria-expanded="true"]{background:var(--koral);color:#fff;border-color:var(--koral);}
+  .badge-doks[aria-expanded="true"]{background:var(--nebo);color:#fff;border-color:var(--nebo);}
+  .badge-dugme .dot{width:9px;height:9px;border-radius:50%;background:var(--koral);flex:none;position:relative;}
+  .badge-dugme[aria-expanded="true"] .dot{background:#fff;}
+  .upis-panel{
+    background:#fff;border-radius:var(--r-m);padding:20px 22px;margin-bottom:22px;max-width:54ch;
+    box-shadow:var(--senka-meka);border:1px solid rgba(74,52,35,.06);animation:blago .34s ease;
+  }
+  .upis-panel p{color:var(--tekst-meki);font-size:.98rem;line-height:1.62;margin:0;}
+  .upis-panel p + p{margin-top:11px;}
+  .doks-grupa + .doks-grupa{margin-top:16px;}
+  .doks-grupa h4{font-family:"Fredoka";font-weight:600;font-size:1.06rem;margin:0 0 9px;color:var(--tekst);}
+  .doks-grupa ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .doks-grupa li{position:relative;padding-left:24px;color:var(--tekst-meki);font-size:.96rem;line-height:1.5;}
+  .doks-grupa li::before{content:"";position:absolute;left:2px;top:7px;width:11px;height:11px;border-radius:50%;background:rgba(53,182,230,.22);box-shadow:inset 0 0 0 2px var(--nebo);}
+  @keyframes blago{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+  .hero h1{font-size:clamp(2.5rem,6vw,4.35rem);font-weight:700;letter-spacing:.4px;}
+  .hero h1 .re-boja1{color:var(--koral);}
+  .hero h1 .re-boja2{color:var(--malina);}
+  .hero .slogan{font-family:"Caveat";font-weight:700;font-size:clamp(1.7rem,4vw,2.5rem);color:var(--ljubicasta);margin:2px 0 16px;transform:rotate(-2deg);display:inline-block;}
+  .hero .uvod{font-size:1.14rem;max-width:34ch;color:var(--tekst-meki);margin-bottom:26px;}
+  .hero-akcije{display:flex;flex-wrap:wrap;gap:14px;}
+
+  .hero-slika-omot{position:relative;}
+  .polaroid{
+    background:#fff;padding:14px 14px 46px;border-radius:22px;box-shadow:var(--senka);
+    transform:rotate(3deg);position:relative;z-index:2;
+  }
+  .polaroid img{border-radius:12px;aspect-ratio:4/3;object-fit:cover;width:100%;}
+  .polaroid .potpis{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:"Caveat";font-size:1.5rem;color:var(--tekst-meki);}
+  .oblacic{position:absolute;background:#fff;border-radius:999px;box-shadow:var(--senka-meka);}
+  .oblacic.o1{width:64px;height:44px;top:-20px;left:-14px;}
+  .oblacic.o1::before,.oblacic.o1::after{content:"";position:absolute;background:#fff;border-radius:50%;}
+  .oblacic.o1::before{width:34px;height:34px;top:-14px;left:8px;}
+  .oblacic.o1::after{width:26px;height:26px;top:-8px;left:30px;}
+
+  /* leteci ukrasi */
+  .ukras{position:absolute;pointer-events:none;opacity:.9;z-index:0;}
+  .zvezda{filter:drop-shadow(0 6px 10px rgba(74,52,35,.12));}
+  @media(prefers-reduced-motion:no-preference){
+    .plovi{animation:plovi 6s ease-in-out infinite;}
+    .plovi2{animation:plovi 8s ease-in-out infinite;}
+    @keyframes plovi{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  }
+
+  /* ---------- SEKCIJE ---------- */
+  .sekcija{padding:72px 0;position:relative;scroll-margin-top:78px;}
+  #pocetak{scroll-margin-top:78px;}
+  .sekcija.svetla{background:var(--kremzuta-2);}
+  .nadnaslov{
+    display:inline-flex;align-items:center;gap:8px;font-family:"Fredoka";font-weight:600;
+    color:var(--koral-tamni);text-transform:uppercase;letter-spacing:1.4px;font-size:.82rem;margin-bottom:12px;
+  }
+  .nadnaslov::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--kruna);}
+  .naslov-sekcije{font-size:clamp(2rem,4.4vw,2.9rem);font-weight:700;margin-bottom:14px;}
+  .uvod-sekcije{max-width:60ch;color:var(--tekst-meki);font-size:1.08rem;margin-bottom:40px;}
+
+  /* ---------- O NAMA ---------- */
+  .vrednosti{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px;}
+  .vrednost{background:#fff;border-radius:var(--r-l);padding:30px 26px;box-shadow:var(--senka-meka);border-bottom:5px solid var(--nebo);}
+  .vrednost:nth-child(2){border-bottom-color:var(--malina);}
+  .vrednost:nth-child(3){border-bottom-color:var(--livada);}
+  .vrednost .ikonka{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:14px;background:rgba(53,182,230,.14);}
+  .vrednost:nth-child(2) .ikonka{background:rgba(232,71,142,.14);}
+  .vrednost:nth-child(3) .ikonka{background:rgba(111,182,60,.16);}
+  .vrednost h3{font-size:1.35rem;margin-bottom:6px;}
+  .vrednost p{margin:0;color:var(--tekst-meki);}
+
+  /* ---------- PROSTOR GALERIJA ---------- */
+  .galerija{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:16px;}
+  .galerija figure{margin:0;border-radius:var(--r-m);overflow:hidden;box-shadow:var(--senka-meka);position:relative;background:#fff;}
+  .galerija figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .galerija figure:hover img{transform:scale(1.07);}
+  .galerija .visok{grid-row:span 2;}
+  .galerija .sirok{grid-column:span 2;}
+
+  /* ---------- AKTIVNOSTI ---------- */
+  .kartice-akt{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .akt{background:#fff;border-radius:var(--r-l);overflow:hidden;box-shadow:var(--senka-meka);display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;}
+  .akt:hover{transform:translateY(-6px);box-shadow:var(--senka);}
+  .akt .slika{aspect-ratio:4/3;overflow:hidden;}
+  .akt .slika img{width:100%;height:100%;object-fit:cover;}
+  .akt .telo{padding:20px 22px 24px;}
+  .akt h3{font-size:1.28rem;margin-bottom:6px;}
+  .akt p{margin:0;color:var(--tekst-meki);font-size:.98rem;}
+  .znak{display:inline-block;font-family:"Fredoka";font-weight:600;font-size:.76rem;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:var(--ljubicasta);padding:4px 12px;border-radius:999px;margin-bottom:10px;}
+
+  /* ---------- IZLETI ---------- */
+  .izleti-uvod{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:26px;}
+  .izlet{border-radius:var(--r-l);overflow:hidden;box-shadow:var(--senka-meka);background:#fff;}
+  .izlet img{width:100%;aspect-ratio:16/10;object-fit:cover;}
+  .izlet .telo{padding:20px 24px 24px;}
+  .izlet h3{font-size:1.3rem;margin-bottom:6px;}
+  .izlet p{margin:0;color:var(--tekst-meki);}
+  .izleti-lista{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;}
+  .cip{background:#fff;border:2px solid rgba(53,182,230,.35);color:var(--tekst);font-family:"Fredoka";font-weight:500;padding:9px 18px;border-radius:999px;box-shadow:var(--senka-meka);font-size:.96rem;}
+
+  /* ---------- RODITELJI (edukacija) ---------- */
+  #roditelji{background:linear-gradient(180deg,#FFF3C4 0%,#FFF6DE 100%);}
+  .rod-glava{max-width:64ch;}
+  .rod-glava .naslov-sekcije{color:var(--malina);}
+  .kartice-rod{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px;}
+  .rod{background:#fff;border-radius:var(--r-l);padding:28px 26px 26px;box-shadow:var(--senka-meka);position:relative;border-top:6px solid var(--kruna);}
+  .rod:nth-child(2){border-top-color:var(--malina);}
+  .rod:nth-child(3){border-top-color:var(--nebo);}
+  .rod:nth-child(4){border-top-color:var(--livada);}
+  .rod:nth-child(5){border-top-color:var(--ljubicasta);}
+  .rod .broj{position:absolute;top:-18px;right:22px;width:44px;height:44px;border-radius:50%;background:var(--kruna);color:#fff;font-family:"Fredoka";font-weight:700;display:grid;place-items:center;font-size:1.2rem;box-shadow:var(--senka-meka);}
+  .rod:nth-child(2) .broj{background:var(--malina);}
+  .rod:nth-child(3) .broj{background:var(--nebo);}
+  .rod:nth-child(4) .broj{background:var(--livada);}
+  .rod:nth-child(5) .broj{background:var(--ljubicasta);}
+  .rod h3{font-size:1.24rem;margin-bottom:10px;padding-right:34px;}
+  .rod p{margin:0;color:var(--tekst-meki);font-size:1rem;}
+  .rod ul{margin:0;padding-left:20px;color:var(--tekst-meki);}
+  .rod ul li{margin-bottom:8px;}
+  .rod ul li:last-child{margin-bottom:0;}
+
+  /* ---------- LOKACIJE (saobraćajni tepih) ---------- */
+  .lokacije{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:12px;}
+  .lok{background:#fff;border-radius:var(--r-l);overflow:hidden;box-shadow:var(--senka);border:3px solid #fff;}
+  .tepih{display:block;width:100%;height:auto;background:#8FCB5B;}
+  .lok .telo{padding:24px 26px 26px;}
+  .lok .oznaka{display:inline-flex;align-items:center;gap:8px;font-family:"Fredoka";font-weight:600;color:#fff;background:var(--nebo);padding:5px 14px;border-radius:999px;font-size:.86rem;margin-bottom:12px;}
+  .lok:nth-child(2) .oznaka{background:var(--malina);}
+  .lok .telo h3{font-size:1.5rem;margin-bottom:4px;}
+  .lok .adr{color:var(--tekst-meki);font-size:1.05rem;margin-bottom:16px;}
+  .lok .adr strong{color:var(--tekst);}
+
+  /* ---------- ZAPOSLENJE ---------- */
+  .posao{background:linear-gradient(135deg,var(--koral) 0%,#E24B30 100%);border-radius:var(--r-l);padding:44px 40px;color:#fff;box-shadow:var(--senka);position:relative;overflow:hidden;}
+  .posao::after{content:"";position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.10);}
+  .posao .nadnaslov{color:#fff;}
+  .posao .nadnaslov::before{background:#fff;}
+  .posao h2{font-size:clamp(1.8rem,3.6vw,2.5rem);margin-bottom:12px;font-weight:700;}
+  .posao p{max-width:52ch;color:rgba(255,255,255,.94);font-size:1.08rem;margin-bottom:22px;}
+  .posao .btn-svetli{background:#fff;color:var(--koral-tamni);}
+  .posao .btn-svetli:hover{background:#FFF3C4;}
+
+  /* ---------- KONTAKT ---------- */
+  #kontakt{background:var(--tekst);color:#fff;}
+  #kontakt .naslov-sekcije{color:#fff;}
+  #kontakt .nadnaslov{color:var(--kruna);}
+  #kontakt .nadnaslov::before{background:var(--kruna);}
+  .kontakt-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;}
+  .kontakt-lista{display:flex;flex-direction:column;gap:16px;}
+  .kontakt-red{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);border-radius:var(--r-m);padding:16px 20px;transition:background .18s;}
+  a.kontakt-red:hover{background:rgba(255,255,255,.12);}
+  .kontakt-red .ico{width:46px;height:46px;border-radius:13px;background:var(--kruna);display:grid;place-items:center;flex-shrink:0;}
+  .kontakt-red .ico.koral{background:var(--koral);}
+  .kontakt-red .ico.malina{background:var(--malina);}
+  .kontakt-red .ico.nebo{background:var(--nebo);}
+  .kontakt-red .oznaka-k{font-size:.82rem;color:rgba(255,255,255,.6);font-family:"Fredoka";text-transform:uppercase;letter-spacing:.6px;}
+  .kontakt-red .vred{font-family:"Fredoka";font-weight:600;font-size:1.12rem;}
+  .soc{display:flex;gap:12px;margin-top:6px;}
+  .soc a{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:transform .16s,background .18s;}
+  .soc a:hover{transform:translateY(-3px);}
+  .soc a.fb:hover{background:#1877F2;}
+  .soc a.ig:hover{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);}
+  .kontakt-cta{background:linear-gradient(160deg,#fff 0%,#FFF6DE 100%);border-radius:var(--r-l);padding:34px 32px;color:var(--tekst);box-shadow:var(--senka);}
+  .kontakt-cta h3{font-size:1.7rem;margin-bottom:8px;}
+  .kontakt-cta p{color:var(--tekst-meki);margin-bottom:22px;}
+  .kontakt-cta .btn{width:100%;margin-bottom:12px;}
+  .kontakt-cta .btn:last-child{margin-bottom:0;}
+
+  /* ---------- FOOTER ---------- */
+  .podnozje{background:#3a2a1c;color:rgba(255,255,255,.72);padding:30px 0;text-align:center;font-size:.94rem;}
+  .podnozje .brend-f{display:inline-flex;align-items:center;gap:10px;font-family:"Fredoka";font-weight:600;color:#fff;font-size:1.05rem;margin-bottom:8px;}
+  .podnozje .brend-f img{width:34px;height:34px;border-radius:50%;}
+  .podnozje a{color:var(--kruna);}
+
+  /* reveal */
+  .otkrij{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+  .otkrij.vidljiv{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.otkrij{opacity:1;transform:none;transition:none;}}
+
+  /* ---------- BAJKA: vitez i princeza (hero animacija) ---------- */
+  .bajka-scena{position:relative;max-width:560px;height:210px;margin:14px auto 0;pointer-events:none;}
+  .bajka-scena img{position:absolute;bottom:0;height:180px;width:auto;filter:drop-shadow(0 10px 14px rgba(74,52,35,.18));}
+  .vitez{left:-24%;opacity:0;animation:vitez-move var(--tb) ease-in-out infinite, bob-v .5s ease-in-out infinite;}
+  .princeza{right:-24%;opacity:0;animation:princeza-move var(--tb) ease-in-out infinite, bob-p .5s ease-in-out infinite;}
+  .zagrljaj{left:50%;height:196px;opacity:0;transform:translateX(-50%) scale(.6);animation:zagrljaj-pop var(--tb) ease-in-out infinite;}
+  .bajka-scena{--tb:7s;}
+
+  @keyframes vitez-move{
+    0%{left:-24%;opacity:0;} 6%{opacity:1;}
+    38%{left:26%;opacity:1;} 44%{left:28%;opacity:0;}
+    100%{left:-24%;opacity:0;}
+  }
+  @keyframes princeza-move{
+    0%{right:-24%;opacity:0;} 6%{opacity:1;}
+    38%{right:26%;opacity:1;} 44%{right:28%;opacity:0;}
+    100%{right:-24%;opacity:0;}
+  }
+  @keyframes bob-v{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-11px) rotate(-6deg);}}
+  @keyframes bob-p{0%,100%{transform:translateY(0) rotate(3deg);}50%{transform:translateY(-11px) rotate(6deg);}}
+  @keyframes zagrljaj-pop{
+    0%,40%{opacity:0;transform:translateX(-50%) scale(.6);}
+    46%{opacity:1;transform:translateX(-50%) scale(1.07);}
+    50%{transform:translateX(-50%) scale(1);}
+    88%{opacity:1;transform:translateX(-50%) scale(1);}
+    96%,100%{opacity:0;transform:translateX(-50%) scale(.92);}
+  }
+  .srce-b{position:absolute;bottom:58%;width:22px;height:22px;opacity:0;animation:srce-let var(--tb) ease-in-out infinite;}
+  .srce-b svg{width:100%;height:100%;filter:drop-shadow(0 3px 4px rgba(232,71,142,.4));}
+  .srce-b.s1{left:44%;animation-delay:.1s;} .srce-b.s2{left:52%;animation-delay:.35s;} .srce-b.s3{left:48%;animation-delay:.6s;}
+  @keyframes srce-let{
+    0%,44%{opacity:0;transform:translateY(0) scale(.5);}
+    54%{opacity:1;} 74%{opacity:.9;transform:translateY(-46px) scale(1);}
+    88%{opacity:0;transform:translateY(-78px) scale(1);} 100%{opacity:0;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    /* nežni prelaz (samo prozirnost, bez velikog kretanja) */
+    .vitez{left:11%;right:auto;transform:none;animation:cross-par 6s ease-in-out infinite;}
+    .princeza{right:11%;left:auto;transform:none;animation:cross-par 6s ease-in-out infinite;}
+    .zagrljaj{animation:cross-hug 6s ease-in-out infinite;}
+    .srce-b{display:none;}
+  }
+  @keyframes cross-par{0%,32%{opacity:1;}50%,88%{opacity:0;}100%{opacity:1;}}
+  @keyframes cross-hug{0%,32%{opacity:0;transform:translateX(-50%) scale(.96);}50%,88%{opacity:1;transform:translateX(-50%) scale(1);}100%{opacity:0;transform:translateX(-50%) scale(.96);}}
+
+  /* ---------- ČESTA PITANJA ---------- */
+  .faq-lista{display:grid;gap:14px;max-width:820px;}
+  .faq{background:#fff;border-radius:var(--r-m);box-shadow:var(--senka-meka);border-left:5px solid var(--nebo);overflow:hidden;}
+  .faq:nth-child(4n+2){border-left-color:var(--malina);}
+  .faq:nth-child(4n+3){border-left-color:var(--livada);}
+  .faq:nth-child(4n+4){border-left-color:var(--kruna);}
+  .faq summary{list-style:none;cursor:pointer;padding:19px 22px;font-family:"Fredoka";font-weight:600;font-size:1.08rem;color:var(--tekst);display:flex;align-items:center;gap:16px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary .plus{margin-left:auto;width:28px;height:28px;flex:none;border-radius:50%;background:var(--kremzuta);display:grid;place-items:center;position:relative;}
+  .faq summary .plus::before,.faq summary .plus::after{content:"";position:absolute;background:var(--koral);border-radius:2px;}
+  .faq summary .plus::before{width:13px;height:2.6px;}
+  .faq summary .plus::after{width:2.6px;height:13px;transition:transform .25s,opacity .25s;}
+  .faq[open] summary .plus::after{transform:rotate(90deg);opacity:0;}
+  .faq .odg{padding:0 22px 22px;color:var(--tekst-meki);font-size:1rem;line-height:1.64;}
+  .faq .odg strong{color:var(--tekst);}
+  .faq[open] summary{color:var(--koral-tamni);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:28px;}
+    .hero-slika-omot{max-width:440px;margin:0 auto;}
+    .vrednosti,.kartice-akt,.kartice-rod{grid-template-columns:1fr 1fr;}
+    .galerija{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;}
+    .lokacije,.izleti-uvod,.kontakt-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:720px){
+    .traka nav{
+      position:fixed;inset:70px 0 auto 0;flex-direction:column;align-items:stretch;
+      background:var(--kremzuta);padding:14px 22px 22px;gap:8px;
+      border-bottom:2px solid rgba(255,192,46,.4);box-shadow:var(--senka);
+      transform:translateY(-140%);transition:transform .3s ease;
+    }
+    .traka nav.otvoren-meni{transform:none;}
+    .traka nav a{padding:12px 16px;font-size:1.05rem;}
+    .hamburger{display:flex;}
+    .vrednosti,.kartice-akt,.kartice-rod{grid-template-columns:1fr;}
+    .galerija{grid-template-columns:1fr 1fr;grid-auto-rows:150px;}
+    .galerija .sirok{grid-column:span 2;}
+    .sekcija{padding:56px 0;}
+    .bajka-scena{height:150px;margin-top:6px;}
+    .bajka-scena img{height:126px;}
+    .zagrljaj{height:138px;}
+    .posao{padding:34px 26px;}
+  }
+  @media(max-width:420px){
+    .hero-akcije .btn{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="traka">
+  <div class="omot traka-omot">
+    <a href="#pocetak" class="brend">
+      <img src="slike/logo.jpg" alt="Logo Kraljevstvo mašte" />
+      <span>Kraljevstvo&nbsp;mašte</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="meni">
+      <a href="#o-nama">O nama</a>
+      <a href="#prostor">Naš prostor</a>
+      <a href="#aktivnosti">Aktivnosti</a>
+      <a href="#roditelji" class="dugme-roditelji">Za roditelje</a>
+      <a href="#lokacije">Lokacije</a>
+      <a href="#pitanja">Pitanja</a>
+      <a href="tel:+381654135044" class="dugme-pozovi">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 005.5 5.5L16 15l4 1.5v3a1.5 1.5 0 01-1.6 1.5A16 16 0 013 5.6 1.5 1.5 0 014.5 4H6.5z" fill="currentColor"/></svg>
+        065 41 35 044
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="pocetak">
+  <!-- ukrasi -->
+  <svg class="ukras plovi zvezda" style="top:60px;right:8%;" width="46" height="46" viewBox="0 0 24 24" fill="#FFC02E"><path d="M12 2l2.6 6.3L21 9l-4.8 4.2L17.6 20 12 16.3 6.4 20l1.4-6.8L3 9l6.4-.7z"/></svg>
+  <svg class="ukras plovi2 zvezda" style="bottom:30px;left:6%;" width="30" height="30" viewBox="0 0 24 24" fill="#E8478E"><path d="M12 2l2.6 6.3L21 9l-4.8 4.2L17.6 20 12 16.3 6.4 20l1.4-6.8L3 9l6.4-.7z"/></svg>
+  <div class="omot hero-grid">
+    <div class="hero-tekst">
+      <div class="upis-red">
+        <button class="badge-dugme" type="button" aria-expanded="false" aria-controls="upisPanel">
+          <span class="dot"></span> Upis u toku — uz subvencije grada
+        </button>
+        <button class="badge-doks" type="button" aria-expanded="false" aria-controls="doksPanel">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+          Potrebna dokumentacija
+        </button>
+      </div>
+
+      <div class="upis-panel" id="upisPanel" hidden>
+        <p>Subvencionisani iznos direktno se uplaćuje na račun vrtića, čime su roditelji u potpunosti rasterećeni dodatnih obaveza i administracije u vezi sa uplatama koje podležu subvenciji.</p>
+        <p>Program rada koji se realizuje u predškolskoj ustanovi „Kraljevstvo mašte“ verifikovan je od strane Ministarstva prosvete Republike Srbije, čime se potvrđuje da ispunjavamo sve zakonske uslove u pogledu prostora, opreme, kadra i sadržaja vaspitno-obrazovnog rada.</p>
+        <p>Naša predškolska ustanova sprovodi redovni program vaspitno-obrazovnog rada, kao i pripremni predškolski program, koji su usaglašeni sa savremenim standardima i potrebama dece različitog uzrasta.</p>
+      </div>
+
+      <div class="upis-panel" id="doksPanel" hidden>
+        <div class="doks-grupa">
+          <h4>Za dete</h4>
+          <ul>
+            <li>Odbijenica grada Beograda</li>
+            <li>Izvod iz matične knjige rođenih</li>
+            <li>Fotokopija kartona vakcinacije</li>
+            <li>Potvrda pedijatra da se dete može uključiti u kolektiv</li>
+          </ul>
+        </div>
+        <div class="doks-grupa">
+          <h4>Za podnosioca zahteva (jedan roditelj)</h4>
+          <ul>
+            <li>Fotokopija očitane lične karte</li>
+            <li>Uverenje o državljanstvu</li>
+          </ul>
+        </div>
+      </div>
+
+      <h1><span class="re-boja1">Kraljevstvo</span> <span class="re-boja2">mašte</span></h1>
+      <span class="slogan">Za sve vitezove i princeze</span>
+      <p class="uvod">Sigurno, toplo i podsticajno okruženje gde deca rastu uz igru, druženje i ljubav — na dve lokacije u Beogradu.</p>
+      <div class="hero-akcije">
+        <a href="#kontakt" class="btn btn-koral">Zakaži posetu</a>
+        <a href="#prostor" class="btn btn-nebo">Pogledaj prostor</a>
+      </div>
+    </div>
+    <div class="hero-slika-omot">
+      <span class="oblacic o1 plovi"></span>
+      <div class="polaroid">
+        <img src="slike/prostor-1.jpg" alt="Vedra igraonica sa zidnom mapom sveta u vrtiću Kraljevstvo mašte" />
+        <span class="potpis">naša igraonica ✨</span>
+      </div>
+    </div>
+  </div>
+  <div class="omot">
+    <div class="bajka-scena" aria-hidden="true">
+      <img class="vitez" src="slike/vitez.png" alt="">
+      <img class="princeza" src="slike/princeza.png" alt="">
+      <img class="zagrljaj" src="slike/zagrljaj.png" alt="">
+      <span class="srce-b s1"><svg viewBox="0 0 24 24" fill="#E8478E"><path d="M12 21s-7-4.35-9.33-9.02C1.24 9.26 2.4 6 5.5 6 7.24 6 8.5 7 12 10.5 15.5 7 16.76 6 18.5 6c3.1 0 4.26 3.26 2.83 5.98C19 16.65 12 21 12 21z"/></svg></span>
+      <span class="srce-b s2"><svg viewBox="0 0 24 24" fill="#F26246"><path d="M12 21s-7-4.35-9.33-9.02C1.24 9.26 2.4 6 5.5 6 7.24 6 8.5 7 12 10.5 15.5 7 16.76 6 18.5 6c3.1 0 4.26 3.26 2.83 5.98C19 16.65 12 21 12 21z"/></svg></span>
+      <span class="srce-b s3"><svg viewBox="0 0 24 24" fill="#FFC02E"><path d="M12 21s-7-4.35-9.33-9.02C1.24 9.26 2.4 6 5.5 6 7.24 6 8.5 7 12 10.5 15.5 7 16.76 6 18.5 6c3.1 0 4.26 3.26 2.83 5.98C19 16.65 12 21 12 21z"/></svg></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O NAMA ============ -->
+<section class="sekcija" id="o-nama">
+  <div class="omot">
+    <span class="nadnaslov otkrij">O nama</span>
+    <h2 class="naslov-sekcije otkrij">Mesto gde svako dete piše svoju bajku</h2>
+    <p class="uvod-sekcije otkrij">U Kraljevstvu mašte deca uče kroz igru, otkrivaju svet oko sebe i grade prva prijateljstva. Naši vaspitači su tu da svako jutro dočekaju osmeh i pruže brigu, sigurnost i podršku svakom mališanu.</p>
+    <div class="vrednosti">
+      <div class="vrednost otkrij">
+        <div class="ikonka">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.33-9.02C1.24 9.26 2.4 6 5.5 6 7.24 6 8.5 7 12 10.5 15.5 7 16.76 6 18.5 6c3.1 0 4.26 3.26 2.83 5.98C19 16.65 12 21 12 21z" fill="#35B6E6"/></svg>
+        </div>
+        <h3>Toplo i brižno</h3>
+        <p>Male grupe i pažnja posvećena svakom detetu — jer svako je jedinstveno.</p>
+      </div>
+      <div class="vrednost otkrij">
+        <div class="ikonka">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.9 6 6.6.6-5 4.3 1.6 6.5L12 16.9 5.9 19.4l1.6-6.5-5-4.3L9.1 8z" fill="#E8478E"/></svg>
+        </div>
+        <h3>Podsticajno</h3>
+        <p>Radionice, izleti i kreativne aktivnosti koje bude radoznalost i maštu.</p>
+      </div>
+      <div class="vrednost otkrij">
+        <div class="ikonka">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 4.4-3.4 7.7-8 9-4.6-1.3-8-4.6-8-9V7l8-4z" fill="#6FB63C"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Sigurno</h3>
+        <p>Uređen, bezbedan prostor u kome se deca osećaju kao kod kuće.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROSTOR ============ -->
+<section class="sekcija svetla" id="prostor">
+  <div class="omot">
+    <span class="nadnaslov otkrij">Naš prostor</span>
+    <h2 class="naslov-sekcije otkrij">Prostrane i svetle igraonice</h2>
+    <p class="uvod-sekcije otkrij">Vedre, uređene sobe pune svetla, boja i igračaka — svaki kutak osmišljen je za igru, učenje i odmor.</p>
+    <div class="galerija otkrij">
+      <figure class="visok"><img src="slike/prostor-1.jpg" alt="Igraonica sa zidnom mapom sveta" loading="lazy"></figure>
+      <figure class="sirok"><img src="slike/prostor-3.jpg" alt="Soba sa drvenim stočićima i tepihom sa putevima" loading="lazy"></figure>
+      <figure><img src="slike/prostor-2.jpg" alt="Igraonica sa zidom od srca" loading="lazy"></figure>
+      <figure><img src="slike/prostor-6.jpg" alt="Soba sa plavim stočićima" loading="lazy"></figure>
+      <figure class="sirok"><img src="slike/prostor-4.jpg" alt="Svetla učionica sa lutkama i tepihom" loading="lazy"></figure>
+      <figure><img src="slike/prostor-5.jpg" alt="Radna soba sa dečjim radovima na zidu" loading="lazy"></figure>
+      <figure><img src="slike/prostor-7.jpg" alt="Igraonica sa mekim podom u obliku slagalice" loading="lazy"></figure>
+      <figure class="sirok"><img src="slike/prostor-8.jpg" alt="Soba sa okruglim stolom i policama sa igračkama" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AKTIVNOSTI ============ -->
+<section class="sekcija" id="aktivnosti">
+  <div class="omot">
+    <span class="nadnaslov otkrij">Život u vrtiću</span>
+    <h2 class="naslov-sekcije otkrij">Svaki dan je nova avantura</h2>
+    <p class="uvod-sekcije otkrij">Od „leta maštom" do male farme u vrtiću — kroz tematske dane, radionice i goste, deca uče igrajući se.</p>
+    <div class="kartice-akt">
+      <article class="akt otkrij">
+        <div class="slika"><img src="slike/akt-let.jpg" alt="Let mašte — tematski dan avionom" loading="lazy"></div>
+        <div class="telo"><span class="znak">Tematski dan</span><h3>Let mašte</h3><p>Deca postaju putnici, vaspitačice kabinska posada, a u goste dolazi i pravi pilot. Ukrcavanje je u toku!</p></div>
+      </article>
+      <article class="akt otkrij">
+        <div class="slika"><img src="slike/akt-stomatolog.jpg" alt="Edukacija o zdravim navikama" loading="lazy"></div>
+        <div class="telo"><span class="znak">Zdrave navike</span><h3>U gostima kod nas</h3><p>Gosti struke uče mališane o higijeni i zdravim navikama — koliko dugo peremo zube i zašto je to važno.</p></div>
+      </article>
+      <article class="akt otkrij">
+        <div class="slika"><img src="slike/akt-muzika.jpg" alt="Muzička radionica" loading="lazy"></div>
+        <div class="telo"><span class="znak">Radionica</span><h3>Muzička radionica</h3><p>Ritam, pesma i prvi instrumenti — muzika koja pokreće i spaja celu grupu.</p></div>
+      </article>
+      <article class="akt otkrij">
+        <div class="slika"><img src="slike/akt-farma.jpg" alt="Mala farma u vrtiću" loading="lazy"></div>
+        <div class="telo"><span class="znak">Igra uloga</span><h3>Mala farma u vrtiću</h3><p>Domaće životinje stižu u igraonicu — deca hrane, muzu i uče odakle dolazi hrana.</p></div>
+      </article>
+      <article class="akt otkrij">
+        <div class="slika"><img src="slike/akt-maskenbal.jpg" alt="Maskenbal u vrtiću" loading="lazy"></div>
+        <div class="telo"><span class="znak">Slavlje</span><h3>Maskenbal</h3><p>Vitezovi, princeze, vile i superheroji — dan pun kostima, plesa i smeha.</p></div>
+      </article>
+      <article class="akt otkrij">
+        <div class="slika"><img src="slike/akt-radionica.jpg" alt="Radionice sa roditeljima" loading="lazy"></div>
+        <div class="telo"><span class="znak">Zajedno</span><h3>Radionice sa roditeljima</h3><p>Tokom Dečje nedelje roditelji i deca stvaraju zajedno — druženje koje pamtimo.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IZLETI ============ -->
+<section class="sekcija svetla" id="izleti">
+  <div class="omot">
+    <span class="nadnaslov otkrij">Izleti i posete</span>
+    <h2 class="naslov-sekcije otkrij">Učimo i van učionice</h2>
+    <p class="uvod-sekcije otkrij">Priroda, muzeji i mala putovanja — svet je najveća učionica, a mi ga otkrivamo zajedno.</p>
+    <div class="izleti-uvod">
+      <article class="izlet otkrij">
+        <img src="slike/izlet-bojcin.jpg" alt="Izlet u Bojčinsku šumu" loading="lazy">
+        <div class="telo"><h3>Bojčinska šuma</h3><p>Šetnja, igra i druženje u prirodi — svež vazduh, mostići i mnogo smeha.</p></div>
+      </article>
+      <article class="izlet otkrij">
+        <img src="slike/izlet-muzej.jpg" alt="Poseta Muzeju nauke i tehnike" loading="lazy">
+        <div class="telo"><h3>Muzej nauke i tehnike</h3><p>Interaktivne postavke gde deca sama isprobavaju kako stvari rade.</p></div>
+      </article>
+    </div>
+    <div class="izleti-lista otkrij">
+      <span class="cip">🐢 Mini zoo i akvarijum</span>
+      <span class="cip">🎣 Ribnjak i etno kuća</span>
+      <span class="cip">🚀 Planetarijum i svemir</span>
+      <span class="cip">🍎 Poseta pijaci i cvećari</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZA RODITELJE (edukacija) ============ -->
+<section class="sekcija" id="roditelji">
+  <div class="omot">
+    <div class="rod-glava otkrij">
+      <span class="nadnaslov">Za roditelje</span>
+      <h2 class="naslov-sekcije">Prvi dan u vrtiću: kako pripremiti dete (i sebe)?</h2>
+      <p class="uvod-sekcije">Mali koraci koji znače mnogo za bezbrižan početak. Evo saveta koje delimo sa svim roditeljima naših mališana.</p>
+    </div>
+    <div class="kartice-rod">
+      <div class="rod otkrij">
+        <span class="broj">1</span>
+        <h3>Uvedite rutinu pre polaska</h3>
+        <p>Nekoliko dana ranije uvedite jutarnju rutinu sličnu onoj koja vas čeka — buđenje, doručak, spremanje…</p>
+      </div>
+      <div class="rod otkrij">
+        <span class="broj">2</span>
+        <h3>Pričajte unapred o vrtiću</h3>
+        <ul>
+          <li>Pričajte detetu pozitivno o vrtiću — o igri, drugarima, vaspitačima…</li>
+          <li>Povezujte vrtić sa sigurnošću: objasnite da će vaspitačice biti tu da ga čuvaju i pomažu mu.</li>
+          <li>Ostanite smireni pred svojim detetom: čak i ako ste vi uznemireni zbog rastanka, važno je da dete oseti vašu sigurnost i poverenje.</li>
+          <li>Dajte mu vremena: svako dete ima svoj tempo prilagođavanja. Strpljenje je ključ.</li>
+        </ul>
+      </div>
+      <div class="rod otkrij">
+        <span class="broj">3</span>
+        <h3>Pripremite omiljeni predmet za utehu</h3>
+        <p>Ponesite plišanu igračku, ćebence ili nešto poznato od kuće. To daje detetu osećaj sigurnosti, dok ne upozna novu sredinu.</p>
+      </div>
+      <div class="rod otkrij">
+        <span class="broj">4</span>
+        <h3>Normalno je da se i vi osećate emotivno</h3>
+        <p>Roditeljski strah je prirodan. Verujte vaspitačima i detetovoj sposobnosti da se prilagodi. Vaše samopouzdanje ohrabruje dete!</p>
+      </div>
+      <div class="rod otkrij">
+        <span class="broj">5</span>
+        <h3>Pratite dete, ali ne forsirajte</h3>
+        <p>Svako dete ima svoj tempo adaptacije. Prihvatite sve emocije i dajte mu prostor da izrazi kako se oseća.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOKACIJE (saobraćajni tepih) ============ -->
+<section class="sekcija svetla" id="lokacije">
+  <div class="omot">
+    <span class="nadnaslov otkrij">Naše lokacije</span>
+    <h2 class="naslov-sekcije otkrij">Nađite nas na mapi</h2>
+    <p class="uvod-sekcije otkrij">Kraljevstvo mašte vas čeka na dve adrese u Beogradu. Pratite put do nas!</p>
+    <div class="lokacije">
+
+      <!-- Lokacija 1 -->
+      <article class="lok otkrij">
+        <svg class="tepih" viewBox="0 0 400 300" role="img" aria-label="Mapa lokacije: Bulevar maršala Tolbuhina 2, Novi Beograd">
+          <rect width="400" height="300" fill="#8FCB5B"/>
+          <circle cx="55" cy="45" r="26" fill="#A7D96E"/><circle cx="350" cy="70" r="30" fill="#A7D96E"/><circle cx="330" cy="250" r="34" fill="#A7D96E"/>
+          <!-- horizontalni put -->
+          <rect x="0" y="130" width="400" height="46" fill="#6E6E76"/>
+          <line x1="0" y1="153" x2="400" y2="153" stroke="#FFF3C4" stroke-width="4" stroke-dasharray="20 16"/>
+          <!-- vertikalni put -->
+          <rect x="150" y="0" width="46" height="300" fill="#6E6E76"/>
+          <line x1="173" y1="0" x2="173" y2="300" stroke="#FFF3C4" stroke-width="4" stroke-dasharray="20 16"/>
+          <!-- raskrsnica prelaz -->
+          <g fill="#e9e9ee"><rect x="150" y="118" width="46" height="4"/><rect x="150" y="184" width="46" height="4"/></g>
+          <!-- kućice -->
+          <g>
+            <rect x="40" y="60" width="46" height="40" rx="4" fill="#F5A742"/><path d="M36 60l27-20 27 20z" fill="#E24B30"/>
+            <rect x="250" y="40" width="50" height="42" rx="4" fill="#35B6E6"/><path d="M246 40l29-20 29 20z" fill="#2C86AA"/>
+            <rect x="60" y="215" width="48" height="40" rx="4" fill="#E8478E"/><path d="M56 215l28-20 28 20z" fill="#B83570"/>
+          </g>
+          <!-- drveće -->
+          <g><circle cx="300" cy="210" r="20" fill="#4E9E33"/><rect x="296" y="222" width="8" height="18" fill="#8a5a33"/></g>
+          <g><circle cx="120" cy="120" r="14" fill="#4E9E33"/><rect x="117" y="130" width="6" height="12" fill="#8a5a33"/></g>
+          <!-- autići -->
+          <rect x="60" y="140" width="26" height="14" rx="4" fill="#F2C230"/>
+          <rect x="300" y="156" width="26" height="14" rx="4" fill="#fff"/>
+          <!-- PIN sa krunom: MI SMO OVDE -->
+          <g transform="translate(173,150)">
+            <ellipse cx="0" cy="34" rx="15" ry="5" fill="rgba(0,0,0,.18)"/>
+            <path d="M0 30 C-16 8 -18 -6 0 -18 C18 -6 16 8 0 30Z" fill="#F26246" stroke="#fff" stroke-width="3"/>
+            <circle cx="0" cy="-6" r="8" fill="#fff"/>
+            <path d="M-11 -22 l4 8 4 -6 4 6 4 -8 -1 12 -14 0z" fill="#FFC02E" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+          </g>
+          <!-- tabla natpis -->
+          <g transform="translate(210,196)">
+            <rect x="0" y="0" width="150" height="34" rx="8" fill="#fff" stroke="#4A3423" stroke-width="2"/>
+            <rect x="70" y="34" width="4" height="18" fill="#8a5a33"/>
+            <text x="75" y="22" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="15" font-weight="600" fill="#4A3423">MI SMO OVDE</text>
+          </g>
+        </svg>
+        <div class="telo">
+          <span class="oznaka">📍 Novi Beograd</span>
+          <h3>Lokacija 1</h3>
+          <p class="adr"><strong>Bulevar maršala Tolbuhina 2</strong><br>Novi Beograd</p>
+          <a class="btn btn-nebo" href="https://www.google.com/maps/search/?api=1&query=Bulevar+mar%C5%A1ala+Tolbuhina+2+Novi+Beograd" target="_blank" rel="noopener">Otvori u mapama →</a>
+        </div>
+      </article>
+
+      <!-- Lokacija 2 -->
+      <article class="lok otkrij">
+        <svg class="tepih" viewBox="0 0 400 300" role="img" aria-label="Mapa lokacije: Slikarska 4, Zemun (naselje Sava Kovačević)">
+          <rect width="400" height="300" fill="#8FCB5B"/>
+          <circle cx="60" cy="240" r="30" fill="#A7D96E"/><circle cx="340" cy="40" r="26" fill="#A7D96E"/>
+          <!-- kružni tok -->
+          <circle cx="200" cy="150" r="52" fill="#6E6E76"/>
+          <circle cx="200" cy="150" r="24" fill="#8FCB5B"/>
+          <circle cx="200" cy="150" r="24" fill="none" stroke="#FFF3C4" stroke-width="3" stroke-dasharray="10 10"/>
+          <!-- krakovi puta -->
+          <rect x="0" y="128" width="150" height="44" fill="#6E6E76"/>
+          <rect x="250" y="128" width="150" height="44" fill="#6E6E76"/>
+          <rect x="178" y="0" width="44" height="100" fill="#6E6E76"/>
+          <rect x="178" y="200" width="44" height="100" fill="#6E6E76"/>
+          <line x1="0" y1="150" x2="140" y2="150" stroke="#FFF3C4" stroke-width="4" stroke-dasharray="18 14"/>
+          <line x1="260" y1="150" x2="400" y2="150" stroke="#FFF3C4" stroke-width="4" stroke-dasharray="18 14"/>
+          <line x1="200" y1="0" x2="200" y2="90" stroke="#FFF3C4" stroke-width="4" stroke-dasharray="18 14"/>
+          <line x1="200" y1="210" x2="200" y2="300" stroke="#FFF3C4" stroke-width="4" stroke-dasharray="18 14"/>
+          <!-- pond -->
+          <ellipse cx="320" cy="245" rx="46" ry="30" fill="#35B6E6"/><ellipse cx="320" cy="245" rx="46" ry="30" fill="none" stroke="#2C86AA" stroke-width="3"/>
+          <!-- kućice -->
+          <g>
+            <rect x="40" y="40" width="48" height="40" rx="4" fill="#6FB63C"/><path d="M36 40l28-20 28 20z" fill="#4E7E2A"/>
+            <rect x="300" y="70" width="48" height="40" rx="4" fill="#F5A742"/><path d="M296 70l28-20 28 20z" fill="#E24B30"/>
+            <rect x="40" y="150" width="46" height="40" rx="4" fill="#8E5BD6"/><path d="M36 150l27-20 27 20z" fill="#6a3fb0"/>
+          </g>
+          <!-- drvo -->
+          <g><circle cx="120" cy="250" r="20" fill="#4E9E33"/><rect x="116" y="262" width="8" height="16" fill="#8a5a33"/></g>
+          <!-- autići -->
+          <rect x="60" y="138" width="26" height="14" rx="4" fill="#E8478E"/>
+          <rect x="300" y="152" width="26" height="14" rx="4" fill="#F2C230"/>
+          <!-- PIN sa krunom -->
+          <g transform="translate(200,150)">
+            <ellipse cx="0" cy="34" rx="15" ry="5" fill="rgba(0,0,0,.18)"/>
+            <path d="M0 30 C-16 8 -18 -6 0 -18 C18 -6 16 8 0 30Z" fill="#E8478E" stroke="#fff" stroke-width="3"/>
+            <circle cx="0" cy="-6" r="8" fill="#fff"/>
+            <path d="M-11 -22 l4 8 4 -6 4 6 4 -8 -1 12 -14 0z" fill="#FFC02E" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+          </g>
+          <g transform="translate(120,60)">
+            <rect x="0" y="0" width="150" height="34" rx="8" fill="#fff" stroke="#4A3423" stroke-width="2"/>
+            <rect x="70" y="34" width="4" height="18" fill="#8a5a33"/>
+            <text x="75" y="22" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="15" font-weight="600" fill="#4A3423">MI SMO OVDE</text>
+          </g>
+        </svg>
+        <div class="telo">
+          <span class="oznaka">📍 Zemun</span>
+          <h3>Lokacija 2</h3>
+          <p class="adr"><strong>Slikarska 4</strong><br>naselje Sava Kovačević, Zemun</p>
+          <a class="btn btn-malina" href="https://www.google.com/maps/search/?api=1&query=Slikarska+4+Zemun+Beograd" target="_blank" rel="noopener">Otvori u mapama →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ČESTA PITANJA ============ -->
+<section class="sekcija" id="pitanja">
+  <div class="omot">
+    <span class="nadnaslov otkrij">Česta pitanja</span>
+    <h2 class="naslov-sekcije otkrij">Pitanja roditelja</h2>
+    <p class="uvod-sekcije otkrij">Odgovori na ono što nas roditelji najčešće pitaju. Za sve ostalo — slobodno nam pišite ili nas pozovite.</p>
+    <div class="faq-lista otkrij">
+
+      <details class="faq">
+        <summary>Koje je radno vreme vrtića?<span class="plus"></span></summary>
+        <div class="odg">Radno vreme vrtića je svakog radnog dana <strong>od 7.00 do 17.30 časova.</strong></div>
+      </details>
+
+      <details class="faq">
+        <summary>Koliko dece ima u grupi?<span class="plus"></span></summary>
+        <div class="odg">Naše grupe su male — <strong>do 10-oro dece.</strong> To omogućava vaspitaču da se posveti svakom detetu, prati njegov razvoj i gradi blizak, podržavajući odnos.</div>
+      </details>
+
+      <details class="faq">
+        <summary>Da li imate pripremni predškolski program?<span class="plus"></span></summary>
+        <div class="odg">Da, imamo <strong>jaslice, vrtić i pripremni predškolski program</strong>, prilagođen uzrastu i potrebama dece.</div>
+      </details>
+
+      <details class="faq">
+        <summary>Kako izgleda proces adaptacije u vašem vrtiću?<span class="plus"></span></summary>
+        <div class="odg">Adaptacija kreće <strong>postepeno</strong>, prilagođavamo se <strong>svakom detetu pojedinačno</strong>. Vaspitači i stručna služba prate dete u bliskoj saradnji sa roditeljima, kako bi prelazak u vrtić bio što prijatniji i sigurniji.</div>
+      </details>
+
+      <details class="faq">
+        <summary>Da li koristite ekrane u vrtiću?<span class="plus"></span></summary>
+        <div class="odg"><strong>Ne koristimo ekrane</strong> u radu sa decom. Naš fokus je na aktivnoj igri, kreativnim radionicama, boravku na svežem vazduhu i razvoju socijalnih veština — kroz direktnu interakciju i iskustveno učenje.</div>
+      </details>
+
+      <details class="faq">
+        <summary>Da li je vaš vrtić u sistemu subvencije grada?<span class="plus"></span></summary>
+        <div class="odg">Da, naš vrtić ima potpisan ugovor sa gradom i u <strong>sistemu je subvencije grada</strong>. To znači da <strong>subvenciju grad direktno uplaćuje vrtiću</strong>, a roditelji plaćaju samo razliku do pune cene. Za više informacija o dokumentaciji i proceduri, slobodno nam pišite!</div>
+      </details>
+
+      <details class="faq">
+        <summary>Gde se nalazi vrtić u Zemunu?<span class="plus"></span></summary>
+        <div class="odg">U samom srcu naselja <strong>Sava Kovačević</strong>, na adresi <strong>Slikarska 4</strong>, u blizini pijace.</div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZAPOSLENJE ============ -->
+<section class="sekcija" id="posao">
+  <div class="omot">
+    <div class="posao otkrij">
+      <span class="nadnaslov">Pridruži se timu</span>
+      <h2>Tražimo pojačanje!</h2>
+      <p>PU Kraljevstvo mašte zapošljava <strong>vaspitača</strong> i <strong>medicinsku sestru — vaspitača</strong>. Pridruži se našem timu i pošalji CV ili nas kontaktiraj putem telefona!</p>
+      <a class="btn btn-svetli" href="mailto:kraljevstvomaste@gmail.com?subject=Prijava%20za%20posao%20-%20Kraljevstvo%20ma%C5%A1te">Pošalji CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="sekcija" id="kontakt">
+  <div class="omot">
+    <span class="nadnaslov otkrij">Kontakt i upis</span>
+    <h2 class="naslov-sekcije otkrij">Zakažite posetu i upoznajte nas</h2>
+    <p class="uvod-sekcije otkrij" style="color:rgba(255,255,255,.75)">Pišite nam ili nas pozovite — rado ćemo vam pokazati prostor i odgovoriti na sva pitanja.</p>
+    <div class="kontakt-grid">
+      <div class="kontakt-lista otkrij">
+        <a class="kontakt-red" href="tel:+381654135044">
+          <span class="ico koral"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 005.5 5.5L16 15l4 1.5v3a1.5 1.5 0 01-1.6 1.5A16 16 0 013 5.6 1.5 1.5 0 014.5 4H6.5z" fill="#fff"/></svg></span>
+          <span><span class="oznaka-k">Telefon</span><br><span class="vred">065 41 35 044</span></span>
+        </a>
+        <a class="kontakt-red" href="mailto:kraljevstvomaste@gmail.com">
+          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="#fff"/><path d="M4 7l8 6 8-6" stroke="#4A3423" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>
+          <span><span class="oznaka-k">Email</span><br><span class="vred">kraljevstvomaste@gmail.com</span></span>
+        </a>
+        <div class="kontakt-red">
+          <span class="ico nebo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.4-3.6-8-8-8z" fill="#fff"/><circle cx="12" cy="10" r="3" fill="#35B6E6"/></svg></span>
+          <span><span class="oznaka-k">Lokacije</span><br><span class="vred">Novi Beograd &nbsp;•&nbsp; Zemun</span></span>
+        </div>
+        <div class="soc">
+          <a class="fb" href="https://www.facebook.com/vrtickraljevstvomaste" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M15 8h2V5h-2c-2.2 0-3.5 1.4-3.5 3.6V10H9v3h2.5v8h3v-8H17l.5-3h-3V8.8c0-.5.3-.8 1-.8z"/></svg>
+          </a>
+          <a class="ig" href="https://www.instagram.com/vrtickraljevstvomaste/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="2"/><circle cx="17" cy="7" r="1.4" fill="#fff"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="kontakt-cta otkrij">
+        <h3>Upis je u toku 🎈</h3>
+        <p>Zakažite posetu, upoznajte naše vaspitače i pogledajte prostor u kojem će vaše dete srećno odrastati.</p>
+        <a class="btn btn-koral" href="mailto:kraljevstvomaste@gmail.com?subject=Zakazivanje%20posete%20-%20Kraljevstvo%20ma%C5%A1te&body=Po%C5%A1tovani%2C%20%C5%BEeleo%2Fla%20bih%20da%20zaka%C5%BEem%20posetu.%20Ime%20deteta%2C%20uzrast%20i%20%C5%BEeljena%20lokacija%3A">Pošalji upit mejlom</a>
+        <a class="btn btn-nebo" href="tel:+381654135044">Pozovi: 065 41 35 044</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="podnozje">
+  <div class="omot">
+    <div class="brend-f"><img src="slike/logo.jpg" alt="Kraljevstvo mašte">Kraljevstvo mašte</div>
+    <p style="margin:4px 0 6px">Za sve vitezove i princeze · Novi Beograd &amp; Zemun</p>
+    <p style="margin:0">© <span id="godina"></span> Kraljevstvo mašte ·
+      <a href="https://www.facebook.com/vrtickraljevstvomaste" target="_blank" rel="noopener">Facebook</a> ·
+      <a href="https://www.instagram.com/vrtickraljevstvomaste/" target="_blank" rel="noopener">Instagram</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // mobilni meni
+  var ham = document.getElementById('hamburger');
+  var meni = document.getElementById('meni');
+  ham.addEventListener('click', function(){
+    var otv = meni.classList.toggle('otvoren-meni');
+    ham.classList.toggle('otvoren', otv);
+    ham.setAttribute('aria-expanded', otv);
+  });
+  meni.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      meni.classList.remove('otvoren-meni');
+      ham.classList.remove('otvoren');
+      ham.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // reveal on scroll
+  var el = document.querySelectorAll('.otkrij');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(ulazi){
+      ulazi.forEach(function(u){ if(u.isIntersecting){ u.target.classList.add('vidljiv'); io.unobserve(u.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    el.forEach(function(e){ io.observe(e); });
+  } else { el.forEach(function(e){ e.classList.add('vidljiv'); }); }
+
+  // paneli: Upis uz subvencije / Potrebna dokumentacija (naizmenično)
+  (function(){
+    var parovi = [['.badge-dugme','upisPanel'], ['.badge-doks','doksPanel']];
+    var dugmad = parovi.map(function(par){ return [document.querySelector(par[0]), document.getElementById(par[1])]; });
+    dugmad.forEach(function(par){
+      var dug = par[0], pan = par[1];
+      if(!dug || !pan) return;
+      dug.addEventListener('click', function(){
+        var otvoren = !pan.hidden;
+        dugmad.forEach(function(p){ if(p[1]) p[1].hidden = true; if(p[0]) p[0].setAttribute('aria-expanded','false'); });
+        if(!otvoren){ pan.hidden = false; dug.setAttribute('aria-expanded','true'); }
+      });
+    });
+  })();
+
+  // godina
+  document.getElementById('godina').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
